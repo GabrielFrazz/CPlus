@@ -1,0 +1,40 @@
+var LIMITE = "500";
+var TAXA = 5;
+
+func calcularDesconto(valor, percentual) {
+    guard (valor > 0) else return 0;
+    return valor - (valor * percentual / 100);
+}
+
+func aplicarTaxa(valor, taxa) {
+    return valor + taxa;
+}
+
+func iniciarPrograma() {
+    var preco = "200";
+    var total = 0;
+    var status;
+    var i;
+
+    for (i in 1..3 step 1) {
+        total = total + aplicarTaxa(calcularDesconto(preco, 10), TAXA);
+    }
+
+    status = match (total) {
+        0 => "vazio",
+        500 => "meta",
+        default => "normal",
+    };
+
+    if (total > LIMITE) {
+        total = total - 20;
+    } else {
+        total = total + 10;
+    }
+
+    while (total > 600) {
+        total = total - 10;
+    }
+
+    return total;
+}

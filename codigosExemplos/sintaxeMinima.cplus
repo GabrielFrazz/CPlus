@@ -1,0 +1,12 @@
+var TOTAL;
+
+func calcularSoma(a, b) {
+    var resultado = a + b;
+    return resultado;
+}
+
+func iniciarPrograma() {
+    var x = 10;
+    TOTAL = calcularSoma(x, 20);
+    return TOTAL;
+}

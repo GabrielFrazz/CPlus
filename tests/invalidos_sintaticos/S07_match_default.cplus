@@ -1,0 +1,3 @@
+func iniciarPrograma() {
+return match (x) { 1 => 10 };
+}

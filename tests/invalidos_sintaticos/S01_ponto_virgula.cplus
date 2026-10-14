@@ -1,0 +1,4 @@
+func iniciarPrograma() {
+var valor = 10
+return 0;
+}

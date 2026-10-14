@@ -1,0 +1,7 @@
+func iniciarPrograma() {
+// comentário UTF-8
+var x = "ação \n \t \r \\ \" @ defer |>";
+/* comentário
+ multilinha */
+x = 001; x = 2.5; x = null; x = true; x = false;
+}

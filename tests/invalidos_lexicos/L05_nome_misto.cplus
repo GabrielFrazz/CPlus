@@ -1,0 +1,3 @@
+func iniciarPrograma() {
+var precoAtual = 1;
+}

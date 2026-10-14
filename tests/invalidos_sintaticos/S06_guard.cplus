@@ -1,0 +1,3 @@
+func iniciarPrograma() {
+guard (true) else valor = 1;
+}
