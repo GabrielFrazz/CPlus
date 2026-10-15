@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 
-/* Interface do scanner não reentrante: um arquivo por processo. */
 extern FILE *yyin;
 extern char *yytext;
 extern int yyleng;

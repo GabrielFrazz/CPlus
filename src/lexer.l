@@ -14,8 +14,7 @@ static int fail_lexically(const char *message, int line);
 %}
 
 DIGIT       [0-9]
-VERB        (aplicar|arredondar|atualizar|avaliar|buscar|calcular|configurar|converter|criar|definir|dividir|emitir|exibir|executar|filtrar|formatar|gerar|incrementar|iniciar|ler|limpar|multiplicar|normalizar|obter|processar|registrar|remover|salvar|selecionar|somar|validar|verificar)
-FUNCTION    {VERB}[A-Z][a-zA-Z0-9_]*
+FUNCTION    [a-z]+[A-Z][a-zA-Z0-9_]*
 GLOBAL      [A-Z][A-Z0-9_]*
 LOCAL       [a-z][a-z0-9_]*
 WORD        [A-Za-z0-9_]+

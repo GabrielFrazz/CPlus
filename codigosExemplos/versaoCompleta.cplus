@@ -6,7 +6,7 @@ func calcularDesconto(valor, percentual) {
     return valor - (valor * percentual / 100);
 }
 
-func aplicarTaxa(valor, taxa) {
+func aplicaTaxa(valor, taxa) {
     return valor + taxa;
 }
 
@@ -17,7 +17,7 @@ func iniciarPrograma() {
     var i;
 
     for (i in 1..3 step 1) {
-        total = total + aplicarTaxa(calcularDesconto(preco, 10), TAXA);
+        total = total + aplicaTaxa(calcularDesconto(preco, 10), TAXA);
     }
 
     status = match (total) {
