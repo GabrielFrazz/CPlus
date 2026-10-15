@@ -5,7 +5,7 @@
 #include "parser.tab.h"
 #include "support.h"
 
-/* Escapar controles mantém cada diagnóstico/token em uma única linha. */
+//Formata os lexamas
 void print_lexeme(FILE *stream, const char *text, int length)
 {
     if (!text || length == 0) {

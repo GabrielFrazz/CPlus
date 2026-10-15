@@ -22,7 +22,7 @@
 
 %%
 
-/* Uma lista não vazia rejeita arquivos vazios. O Bison exige EOF ao aceitar. */
+/* Programa vazio não é aceito */
 programa: itens_topo ;
 itens_topo: item_topo | itens_topo item_topo ;
 item_topo: decl_global | decl_funcao ;
@@ -33,7 +33,7 @@ decl_funcao: FUNC ID_FUNCAO '(' parametros_opcionais ')' bloco ;
 parametros_opcionais: %empty | parametros ;
 parametros: ID_LOCAL | parametros ',' ID_LOCAL ;
 
-/* Só blocos dentro de funções alcançam comandos; funções não são comandos. */
+/* Para executar qualquer comando, deve estar dentro de uma função */
 bloco: '{' comandos '}' ;
 comandos: %empty | comandos comando ;
 comando:
@@ -51,7 +51,7 @@ decl_local: VAR ID_LOCAL inicializacao_opcional ';' ;
 atribuicao: identificador_variavel '=' expressao ';' ;
 identificador_variavel: ID_LOCAL | ID_GLOBAL ;
 
-/* Chaves obrigatórias eliminam o problema do dangling else. */
+/* Como as chaves são obrigatórias, não teremos ambiguidade em condicionais aninhadas */
 condicional: IF '(' expressao ')' bloco alternativa_opcional ;
 alternativa_opcional: %empty | ELSE bloco ;
 repeticao_while: WHILE '(' expressao ')' bloco ;
@@ -59,8 +59,7 @@ repeticao_for: FOR '(' ID_LOCAL IN expressao RANGE expressao passo_opcional ')' 
 passo_opcional: %empty | STEP expressao ;
 guarda: GUARD '(' expressao ')' ELSE RETURN expressao ';' ;
 
-/* Cada nível só usa operandos de maior precedência; recursão à esquerda
-   agrupa os operadores binários à esquerda. Não há avaliação. */
+/* Precedência das operações por nível. */
 expressao: expressao_ou ;
 expressao_ou: expressao_e | expressao_ou OR expressao_e ;
 expressao_e: expressao_igualdade | expressao_e AND expressao_igualdade ;
@@ -103,7 +102,7 @@ chamada_funcao: ID_FUNCAO '(' argumentos_opcionais ')' ;
 argumentos_opcionais: %empty | argumentos ;
 argumentos: expressao | argumentos ',' expressao ;
 
-/* Pelo menos um caso literal e exatamente um default ao final. */
+/* o match tem que ter pelo menos um caso e exatamente um default */
 expressao_match:
     MATCH '(' expressao ')' '{' casos_match ',' DEFAULT ARROW expressao virgula_opcional '}'
 ;

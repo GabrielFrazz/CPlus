@@ -11,7 +11,6 @@ all: cplus
 build:
 	mkdir -p build
 
-# Regra agrupada: ambos os arquivos são produzidos pela mesma chamada (Make >= 4.3).
 build/parser.tab.c build/parser.tab.h &: src/parser.y | build
 	$(BISON) $(BISONFLAGS) --defines=build/parser.tab.h -o build/parser.tab.c $<
 
@@ -21,9 +20,6 @@ build/lex.yy.c: src/lexer.l build/parser.tab.h | build
 cplus: build/parser.tab.c build/lex.yy.c src/main.c src/support.h
 	$(CC) $(CPPFLAGS) $(CFLAGS) build/parser.tab.c build/lex.yy.c src/main.c $(LDFLAGS) -o $@
 
-test: cplus
-	bash tests/run_tests.sh
 
-# Somente artefatos gerados conhecidos; nunca apaga fontes ou documentação.
 clean:
 	rm -f cplus cplus.exe build/parser.tab.c build/parser.tab.h build/parser.output build/lex.yy.c
